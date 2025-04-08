@@ -34,4 +34,10 @@ jobs:
             sudo apt-get install -y apache2
             sudo systemctl start apache2
             sudo systemctl enable apache2
-            sudo cp -r ${{ secrets.TARGET_DIR }}/* /var/www/html/
+            echo "📁 Creating target folder (if it doesn't exist)..."
+            mkdir -p /home/ubuntu/deploy
+
+            echo "📦 Moving files to web root..."
+            sudo cp -r /home/ubuntu/deploy/* /var/www/html/
+
+            echo "✅ Deployment done!"
